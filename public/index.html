@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CalcX – Full Stack Calculator</title>
+  <meta name="description" content="A beautiful, full-stack calculator powered by Node.js. Supports advanced expressions, calculation history, and keyboard input." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <main class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="8" fill="url(#logo-grad)"/>
+          <text x="14" y="20" text-anchor="middle" font-size="16" fill="white" font-family="Inter" font-weight="700">∑</text>
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="0" x2="28" y2="28">
+              <stop offset="0%" stop-color="#a78bfa"/>
+              <stop offset="100%" stop-color="#6366f1"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span>CalcX</span>
+      </div>
+      <div class="header-badge">Full Stack</div>
+    </header>
+
+    <div class="content-grid">
+      <!-- Calculator Card -->
+      <section class="calculator-card" aria-label="Calculator">
+        <!-- Display -->
+        <div class="display" id="display">
+          <div class="display-expression" id="display-expression" aria-label="Expression" role="status"></div>
+          <div class="display-result" id="display-result" aria-label="Result">0</div>
+          <div class="display-status" id="display-status"></div>
+        </div>
+
+        <!-- Button Grid -->
+        <div class="btn-grid" role="group" aria-label="Calculator buttons">
+          <!-- Row 1 -->
+          <button class="btn btn-func" id="btn-clear" data-action="clear" aria-label="Clear all">AC</button>
+          <button class="btn btn-func" id="btn-sign" data-action="sign" aria-label="Toggle sign">+/−</button>
+          <button class="btn btn-func" id="btn-percent" data-action="percent" aria-label="Percent">%</button>
+          <button class="btn btn-op" id="btn-divide" data-action="operator" data-value="/" aria-label="Divide">÷</button>
+
+          <!-- Row 2 -->
+          <button class="btn btn-num" id="btn-7" data-action="digit" data-value="7">7</button>
+          <button class="btn btn-num" id="btn-8" data-action="digit" data-value="8">8</button>
+          <button class="btn btn-num" id="btn-9" data-action="digit" data-value="9">9</button>
+          <button class="btn btn-op" id="btn-multiply" data-action="operator" data-value="*" aria-label="Multiply">×</button>
+
+          <!-- Row 3 -->
+          <button class="btn btn-num" id="btn-4" data-action="digit" data-value="4">4</button>
+          <button class="btn btn-num" id="btn-5" data-action="digit" data-value="5">5</button>
+          <button class="btn btn-num" id="btn-6" data-action="digit" data-value="6">6</button>
+          <button class="btn btn-op" id="btn-subtract" data-action="operator" data-value="-" aria-label="Subtract">−</button>
+
+          <!-- Row 4 -->
+          <button class="btn btn-num" id="btn-1" data-action="digit" data-value="1">1</button>
+          <button class="btn btn-num" id="btn-2" data-action="digit" data-value="2">2</button>
+          <button class="btn btn-num" id="btn-3" data-action="digit" data-value="3">3</button>
+          <button class="btn btn-op" id="btn-add" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+          <!-- Row 5 -->
+          <button class="btn btn-num btn-zero" id="btn-0" data-action="digit" data-value="0">0</button>
+          <button class="btn btn-num" id="btn-dot" data-action="dot" aria-label="Decimal point">.</button>
+          <button class="btn btn-equals" id="btn-equals" data-action="equals" aria-label="Equals">=</button>
+        </div>
+
+        <!-- Extra ops row -->
+        <div class="extra-ops">
+          <button class="btn-extra" id="btn-backspace" data-action="backspace" aria-label="Backspace">⌫</button>
+          <button class="btn-extra" id="btn-paren-open" data-action="digit" data-value="(" aria-label="Open parenthesis">(</button>
+          <button class="btn-extra" id="btn-paren-close" data-action="digit" data-value=")" aria-label="Close parenthesis">)</button>
+          <button class="btn-extra" id="btn-power" data-action="operator" data-value="^" aria-label="Power">xⁿ</button>
+        </div>
+
+        <!-- Keyboard hint -->
+        <p class="keyboard-hint">⌨ Keyboard supported</p>
+      </section>
+
+      <!-- History Panel -->
+      <aside class="history-panel" aria-label="Calculation history">
+        <div class="history-header">
+          <h2>History</h2>
+          <button class="clear-history-btn" id="btn-clear-history" aria-label="Clear history">Clear</button>
+        </div>
+        <ul class="history-list" id="history-list" role="list" aria-live="polite">
+          <li class="history-empty" id="history-empty">
+            <span class="empty-icon">📋</span>
+            <span>No calculations yet</span>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
